@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Kütüphane Sistemi</title>
+</head>
+<body>
+
+<h1>📚 Kütüphane Sistemi</h1>
+
+<!-- KİTAP EKLE -->
+<h2>➕ Kitap Ekle</h2>
+<form method="post">
+    Kitap Adı:
+    <input type="text" name="name" required>
+
+    Yazar:
+    <input type="text" name="author" required>
+
+    Yıl:
+    <input type="text" name="year" required>
+
+    <button type="submit">Ekle</button>
+</form>
+
+<hr>
+
+<!-- KİTAP ARA -->
+<h2>🔍 Kitap Ara</h2>
+<form method="get">
+    <input type="text" name="q" placeholder="Aranacak değer">
+
+    <select name="type">
+        <option value="name">Kitap Adı</option>
+        <option value="author">Yazar</option>
+        <option value="year">Yıl</option>
+    </select>
+
+    <button type="submit">Ara</button>
+</form>
+
+<hr>
+
+<!-- KİTAP LİSTESİ -->
+<h2>📖 Kitap Listesi</h2>
+
+{% if books %}
+<ul>
+    {% for book in books %}
+    <li>
+        <strong>{{ book.name }}</strong> - {{ book.author }} ({{ book.year }})
+        <a href="/delete/{{ loop.index0 }}">❌ Sil</a>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>Henüz kitap yok.</p>
+{% endif %}
+
+</body>
+</html>
+
